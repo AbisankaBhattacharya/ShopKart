@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import CartContext from "../../context/CartContext";
 function ProductCard({ product }) {
     const { addToCart } = useContext(CartContext);
     return (
         <div className="card h-100 shadow-sm">
-            <Link to={`/products/${product.id}`}>
+            <Link to={`/products/${product._id}`}>
                 <img
                     src={product.image}
                     className="card-img-top"
@@ -13,8 +13,8 @@ function ProductCard({ product }) {
                 />
             </Link>
             <div className="card-body">
-                <Link to={`/products/${product.id}`}>
-                    <h5>{product.title}</h5>
+                <Link to={`/products/${product._id}`}>
+                    <h5>{product.name}</h5>
 
                     <p className="text-success fw-bold">
                         ₹ {product.price.toLocaleString()}

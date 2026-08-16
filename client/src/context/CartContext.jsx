@@ -1,6 +1,5 @@
-import { createContext, useState } from "react";
-
-export const CartContext = createContext();
+import { useState } from "react";
+import CartContext from "./CartContext";
 
 function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
@@ -8,12 +7,12 @@ function CartProvider({ children }) {
     function addToCart(product) {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find(
-                (item) => item.id === product.id
+                (item) => item._id === product._id
             );
 
             if (existingItem) {
                 return prevItems.map((item) =>
-                    item.id === product.id
+                    item._id === product._id
                         ? {
                             ...item,
                             quantity: item.quantity + 1,
@@ -31,21 +30,21 @@ function CartProvider({ children }) {
             ];
         });
     }
-    function increaseQuantity(id) {
+    function increaseQuantity(productId) {
         setCartItems((prevItems) =>
             prevItems.map((item) =>
-                item.id === id
+                item._id === productId
                     ? { ...item, quantity: item.quantity + 1 }
                     : item
             )
         );
     }
 
-    function decreaseQuantity(id) {
+    function decreaseQuantity(productId) {
         setCartItems((prevItems) =>
             prevItems
                 .map((item) =>
-                    item.id === id
+                    item._id === productId
                         ? { ...item, quantity: item.quantity - 1 }
                         : item
                 )
@@ -53,9 +52,9 @@ function CartProvider({ children }) {
         );
     }
 
-    function removeFromCart(id) {
+    function removeFromCart(productId) {
         setCartItems((prevItems) =>
-            prevItems.filter((item) => item.id !== id)
+            prevItems.filter((item) => item._id !== productId)
         );
     }
 

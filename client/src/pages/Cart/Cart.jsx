@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import CartContext from "../../context/CartContext";
 
 function Cart() {
     const {
@@ -31,13 +31,13 @@ function Cart() {
             {cartItems.map((item) => (
 
                 <div
-                    key={item.id}
+                    key={item._id}
                     className="card mb-3"
                 >
                     <div className="card-body d-flex justify-content-between align-items-center">
 
                         <div>
-                            <h5>{item.title}</h5>
+                            <h5>{item.name}</h5>
 
                             <p className="text-success">
                                 ₹ {item.price.toLocaleString()}
@@ -52,21 +52,21 @@ function Cart() {
 
                             <button
                                 className="btn btn-secondary me-2"
-                                onClick={() => decreaseQuantity(item.id)}
+                                onClick={() => decreaseQuantity(item._id)}
                             >
                                 -
                             </button>
 
                             <button
                                 className="btn btn-secondary me-2"
-                                onClick={() => increaseQuantity(item.id)}
+                                onClick={() => increaseQuantity(item._id)}
                             >
                                 +
                             </button>
 
                             <button
                                 className="btn btn-danger"
-                                onClick={() => removeFromCart(item.id)}
+                                onClick={() => removeFromCart(item._id)}
                             >
                                 Remove
                             </button>
